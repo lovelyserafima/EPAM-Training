@@ -1,0 +1,30 @@
+2018-08-16 23:35:55,847 main  INFO Starter:main:24 - Train №657, true direction arrived
+2018-08-16 23:35:55,878 Thread-0  INFO Train:run:55 - Train №657, true direction entered in FIRST Tunnel
+2018-08-16 23:35:56,877 main  INFO Starter:main:24 - Train №848, false direction arrived
+2018-08-16 23:35:56,885 Thread-1  INFO Train:run:55 - Train №848, false direction entered in SECOND Tunnel
+2018-08-16 23:35:57,885 main  INFO Starter:main:24 - Train №330, true direction arrived
+2018-08-16 23:35:57,898 Thread-2  INFO Train:run:55 - Train №330, true direction entered in FIRST Tunnel
+2018-08-16 23:35:58,878 Thread-0  INFO Train:run:61 - Train №657, true direction left FIRST Tunnel
+2018-08-16 23:35:58,898 main  INFO Starter:main:24 - Train №407, false direction arrived
+2018-08-16 23:35:58,926 Thread-3  INFO Train:run:55 - Train №407, false direction entered in SECOND Tunnel
+2018-08-16 23:35:59,889 Thread-1  INFO Train:run:61 - Train №848, false direction left SECOND Tunnel
+2018-08-16 23:35:59,926 main  INFO Starter:main:24 - Train №296, true direction arrived
+2018-08-16 23:35:59,937 Thread-4  INFO Train:run:55 - Train №296, true direction entered in FIRST Tunnel
+2018-08-16 23:36:00,898 Thread-2  INFO Train:run:61 - Train №330, true direction left FIRST Tunnel
+2018-08-16 23:36:00,937 main  INFO Starter:main:24 - Train №203, true direction arrived
+2018-08-16 23:36:00,944 Thread-5  INFO Train:run:55 - Train №203, true direction entered in FIRST Tunnel
+2018-08-16 23:36:01,926 Thread-3  INFO Train:run:61 - Train №407, false direction left SECOND Tunnel
+2018-08-16 23:36:01,944 main  INFO Starter:main:24 - Train №502, false direction arrived
+2018-08-16 23:36:01,957 Thread-6  INFO Train:run:55 - Train №502, false direction entered in SECOND Tunnel
+2018-08-16 23:36:02,938 Thread-4  INFO Train:run:61 - Train №296, true direction left FIRST Tunnel
+2018-08-16 23:36:03,944 Thread-5  INFO Train:run:61 - Train №203, true direction left FIRST Tunnel
+2018-08-16 23:36:04,193 main  INFO Starter:main:24 - Train №538, false direction arrived
+2018-08-16 23:36:04,223 Thread-7  INFO Train:run:55 - Train №538, false direction entered in FIRST Tunnel
+2018-08-16 23:36:04,957 Thread-6  INFO Train:run:61 - Train №502, false direction left SECOND Tunnel
+2018-08-16 23:36:05,223 main  INFO Starter:main:24 - Train №322, false direction arrived
+2018-08-16 23:36:05,231 Thread-8  INFO Train:run:55 - Train №322, false direction entered in FIRST Tunnel
+2018-08-16 23:36:06,231 main  INFO Starter:main:24 - Train №489, true direction arrived
+2018-08-16 23:36:06,245 Thread-9  INFO Train:run:55 - Train №489, true direction entered in SECOND Tunnel
+2018-08-16 23:36:07,224 Thread-7  INFO Train:run:61 - Train №538, false direction left FIRST Tunnel
+2018-08-16 23:36:08,231 Thread-8  INFO Train:run:61 - Train №322, false direction left FIRST Tunnel
+2018-08-16 23:36:09,245 Thread-9  INFO Train:run:61 - Train №489, true direction left SECOND Tunnel

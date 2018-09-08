@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<papers xmlns="http://www.example.com/papers">
+    <newspaper id="ID-1">
+        <title>Grodno</title>
+        <monthly>true</monthly>
+        <news-chars>
+            <color>true</color>
+            <volume>12</volume>
+            <subscription-index>12322</subscription-index>
+        </news-chars>
+    </newspaper>
+    <newspaper id="ID-2" category="entertainment">
+        <title>Facts</title>
+        <monthly>true</monthly>
+        <news-chars>
+            <color>false</color>
+            <volume>45</volume>
+            <subscription-index>12372</subscription-index>
+        </news-chars>
+    </newspaper>
+    <newspaper id="ID-3" category="science">
+        <title>Nastauniczkaya</title>
+        <monthly>false</monthly>
+        <news-chars>
+            <color>true</color>
+            <volume>25</volume>
+            <subscription-index>11372</subscription-index>
+        </news-chars>
+    </newspaper>
+    <newspaper id="ID-4" category="news">
+        <title>Minsk</title>
+        <monthly>true</monthly>
+        <news-chars>
+            <color>true</color>
+            <volume>20</volume>
+            <subscription-index>15342</subscription-index>
+        </news-chars>
+    </newspaper>
+    <newspaper id="ID-5" category="news">
+        <title>Praca</title>
+        <monthly>true</monthly>
+        <news-chars>
+            <color>true</color>
+            <volume>16</volume>
+            <subscription-index>25344</subscription-index>
+        </news-chars>
+    </newspaper>
+    <magazine id="ID-6" category="fashion">
+        <title>Vogue</title>
+        <monthly>true</monthly>
+        <magazine-chars>
+            <color>true</color>
+            <volume>25</volume>
+            <glossiness>true</glossiness>
+            <subscription-index>42514</subscription-index>
+        </magazine-chars>
+    </magazine>
+    <magazine id="ID-7" category="science">
+        <title>Science</title>
+        <monthly>false</monthly>
+        <magazine-chars>
+            <color>false</color>
+            <volume>41</volume>
+            <glossiness>false</glossiness>
+            <subscription-index>48414</subscription-index>
+        </magazine-chars>
+    </magazine>
+    <magazine id="ID-8" category="fashion">
+        <title>Cosmopolitan</title>
+        <monthly>true</monthly>
+        <magazine-chars>
+            <color>true</color>
+            <volume>65</volume>
+            <glossiness>true</glossiness>
+            <subscription-index>51284</subscription-index>
+        </magazine-chars>
+    </magazine>
+    <magazine id="ID-9" category="news">
+        <title>GQ</title>
+        <monthly>true</monthly>
+        <magazine-chars>
+            <color>false</color>
+            <volume>35</volume>
+            <glossiness>false</glossiness>
+            <subscription-index>31784</subscription-index>
+        </magazine-chars>
+    </magazine>
+    <magazine id="ID-10" category="cosmetic">
+        <title>Elle</title>
+        <monthly>false</monthly>
+        <magazine-chars>
+            <color>true</color>
+            <volume>55</volume>
+            <glossiness>true</glossiness>
+            <subscription-index>21184</subscription-index>
+        </magazine-chars>
+    </magazine>
+    <booklet id="ID-11" category="home">
+        <title>PVH</title>
+        <monthly>true</monthly>
+        <booklet-chars>
+            <color>true</color>
+            <volume>12</volume>
+            <glossiness>true</glossiness>
+        </booklet-chars>
+    </booklet>
+    <booklet id="ID-12" category="cosmetic">
+        <title>Oriflame</title>
+        <monthly>true</monthly>
+        <booklet-chars>
+            <color>true</color>
+            <volume>15</volume>
+            <glossiness>true</glossiness>
+        </booklet-chars>
+    </booklet>
+    <booklet id="ID-13" category="cosmetic">
+        <title>Avon</title>
+        <monthly>true</monthly>
+        <booklet-chars>
+            <color>true</color>
+            <volume>16</volume>
+            <glossiness>true</glossiness>
+        </booklet-chars>
+    </booklet>
+    <booklet id="ID-14" category="science">
+        <title>Ideas</title>
+        <monthly>false</monthly>
+        <booklet-chars>
+            <color>false</color>
+            <volume>10</volume>
+            <glossiness>false</glossiness>
+        </booklet-chars>
+    </booklet>
+    <newspaper id="ID-15" category="sport">
+        <title>Sport</title>
+        <monthly>false</monthly>
+        <news-chars>
+            <color>false</color>
+            <volume>23</volume>
+            <subscription-index>23447</subscription-index>
+        </news-chars>
+    </newspaper>
+    <magazine id="ID-16" category="fashion">
+        <title>Elleon</title>
+        <monthly>false</monthly>
+        <magazine-chars>
+            <color>true</color>
+            <volume>31</volume>
+            <glossiness>true</glossiness>
+            <subscription-index>12543</subscription-index>
+        </magazine-chars>
+    </magazine>
+</papers>

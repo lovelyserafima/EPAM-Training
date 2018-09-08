@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.example.com/papers"
+            xmlns:tns="http://www.example.com/papers"
+            elementFormDefault="qualified">
+    <element name="papers">
+        <complexType>
+            <sequence>
+                <element ref="tns:paperEdition" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="paperEdition" type="tns:paperEdition" abstract="true"/>
+    <element name="magazine" type="tns:magazine" substitutionGroup="tns:paperEdition"/>
+    <element name="newspaper" type="tns:newspaper" substitutionGroup="tns:paperEdition"/>
+    <element name="booklet" type="tns:booklet" substitutionGroup="tns:paperEdition"/>
+
+    <complexType name="paperEdition">
+        <sequence>
+            <element name="title" type="tns:title"/>
+            <element name="monthly" type="tns:monthly"/>
+        </sequence>
+        <attribute name="id" type="ID" use="required"/>
+        <attribute name="category" use="optional" default="news">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="home"/>
+                    <enumeration value="sport"/>
+                    <enumeration value="cosmetic"/>
+                    <enumeration value="science"/>
+                    <enumeration value="fashion"/>
+                    <enumeration value="entertainment"/>
+                    <enumeration value="news"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="newspaper">
+        <complexContent>
+            <extension base="tns:paperEdition">
+                <sequence>
+                    <element name="news-chars" type="tns:news-chars"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="magazine">
+        <complexContent>
+            <extension base="tns:paperEdition">
+                <sequence>
+                    <element name="magazine-chars" type="tns:magazine-chars"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="booklet">
+        <complexContent>
+            <extension base="tns:paperEdition">
+                <sequence>
+                    <element name="booklet-chars" type="tns:booklet-chars"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="news-chars">
+        <sequence>
+            <element name="color" type="tns:color"/>
+            <element name="volume" type="tns:volume"/>
+            <element name="subscription-index" type="tns:subscription-index"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="magazine-chars">
+        <sequence>
+            <element name="color" type="tns:color"/>
+            <element name="volume" type="tns:volume"/>
+            <element name="glossiness" type="tns:glossiness"/>
+            <element name="subscription-index" type="tns:subscription-index"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="booklet-chars">
+        <sequence>
+            <element name="color" type="tns:color"/>
+            <element name="volume" type="tns:volume"/>
+            <element name="glossiness" type="tns:glossiness"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="title">
+        <restriction base="string">
+            <pattern value="\w{2,45}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="monthly">
+        <restriction base="boolean"/>
+    </simpleType>
+
+    <simpleType name="color">
+        <restriction base="boolean"/>
+    </simpleType>
+
+    <simpleType name="category">
+        <restriction base="string">
+            <enumeration value="news"/>
+            <enumeration value="entertainment"/>
+            <enumeration value="science"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="subscription-index">
+        <restriction base="positiveInteger">
+            <minInclusive value="10000"/>
+            <maxInclusive value="99999"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="glossiness">
+        <restriction base="boolean"/>
+    </simpleType>
+
+    <simpleType name="volume">
+        <restriction base="positiveInteger">
+            <minInclusive value="1"/>
+            <maxInclusive value="1000"/>
+        </restriction>
+    </simpleType>
+</schema>
