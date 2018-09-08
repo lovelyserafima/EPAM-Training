@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class TestBuilder {
         private static final String FILE_PATH = "text/test.xml";
-        private static final String EMPTY_FILE_PATH = "text/empty.xml";
         private static final String TEXT_XML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<papers xmlns=\"http://www.example.com/papers\">\n" +
                 "    <magazine id=\"ID-8\" category=\"fashion\">\n" +
@@ -75,6 +74,5 @@ public class TestBuilder {
         @AfterClass
         public void deleteFile() {
                 file.delete();
-
         }
 }
