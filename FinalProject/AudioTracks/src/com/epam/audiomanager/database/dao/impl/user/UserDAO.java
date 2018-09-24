@@ -2,13 +2,13 @@ package com.epam.audiomanager.database.dao.impl.user;
 
 import com.epam.audiomanager.database.dao.AbstractDAO;
 import com.epam.audiomanager.database.pool.ConnectionPool;
-import com.epam.audiomanager.entity.Entity;
 import com.epam.audiomanager.entity.user.Client;
-import com.epam.audiomanager.entity.user.Sex;
 import com.epam.audiomanager.entity.user.TypeUser;
 import com.epam.audiomanager.entity.user.User;
 import com.epam.audiomanager.exception.ProjectException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO extends AbstractDAO implements UserDAOImpl {
     //database queries
@@ -16,7 +16,6 @@ public class UserDAO extends AbstractDAO implements UserDAOImpl {
     private static final String FIND_USER_BY_EMAIL = "select * from User where email = ?";
     private static final String FIND_USER_BY_LOGIN = "select * from User where login = ?";
     private static final String FIND_CLIENT_BY_ID = "select * from Client where user_id = ?";
-    private static final String FIND_ALL = "select * from User";
 
     private static final String INSERT_USER = "insert into User(login, password, role, first_name, second_name, email) " +
             "values(?, ?, ?, ?, ?, ?)";
@@ -140,23 +139,5 @@ public class UserDAO extends AbstractDAO implements UserDAOImpl {
                 ConnectionPool.getInstance().releaseConnection(connection);
             }
         }
-    }
-
-    @Override
-    public void findAll() throws ProjectException {
-        /*try(Statement statement = connection.createStatement()){
-            ResultSet resultSet = statement.executeQuery(FIND_ALL);
-            while (resultSet.next()){
-                System.out.println(resultSet.getInt(1) + resultSet.getString(2) + resultSet.getString(3) +
-                        TypeUser.valueOf(resultSet.getString(4).toUpperCase()) +
-                        resultSet.getString(5) + resultSet.getString(6) +
-                        Sex.valueOf(resultSet.getString(7).toUpperCase()) +  resultSet.getInt(8) +
-                        resultSet.getString(9) + resultSet.getString(10) +
-                        resultSet.getString(11));
-            }
-        } catch (SQLException e) {
-            LOGGER.error("SQLException", e);
-            throw new ProjectException("SQLException", e);
-        }*/
     }
 }

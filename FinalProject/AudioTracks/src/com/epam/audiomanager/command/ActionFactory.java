@@ -13,7 +13,7 @@ public class ActionFactory {
     public Command defineCommand(HttpServletRequest httpServletRequest){
         String action = httpServletRequest.getParameter(COMMAND).replace(TARGET, REPLACEMENT).toUpperCase();
 
-        if (action == null || action.isEmpty()){
+        if (action.isEmpty()){
             return command;
         }
 

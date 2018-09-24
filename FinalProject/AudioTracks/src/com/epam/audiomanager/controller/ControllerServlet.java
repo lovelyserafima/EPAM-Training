@@ -10,7 +10,6 @@ import com.epam.audiomanager.util.property.ConfigurationManager;
 import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,24 +24,16 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            processRequest(req, resp);
-        } catch (ProjectException e) {
-            e.printStackTrace();
-        }
+        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            processRequest(req, resp);
-        } catch (ProjectException e) {
-            e.printStackTrace();
-        }
+        processRequest(req, resp);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException, ProjectException {
+            IOException {
         Router router;
         ActionFactory actionFactory = new ActionFactory();
         Command command = actionFactory.defineCommand(request);
@@ -64,7 +55,9 @@ public class ControllerServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + page);
             }
         } catch (ProjectException e) {
-            throw new ProjectException(e);
+            LOGGER.error("ProjectError", e);
+            String page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_ERROR);
+            response.sendRedirect(request.getContextPath() + page);
         }
 
     }

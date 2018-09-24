@@ -1,9 +1,7 @@
 package com.epam.audiomanager.logic.registration;
 
 import com.epam.audiomanager.entity.user.Client;
-import com.epam.audiomanager.entity.user.Sex;
 import com.epam.audiomanager.entity.user.TypeUser;
-import com.epam.audiomanager.entity.user.User;
 import com.epam.audiomanager.exception.ProjectException;
 import com.epam.audiomanager.util.ConstantValues;
 import com.epam.audiomanager.util.property.MessageManager;
@@ -12,6 +10,7 @@ import com.epam.audiomanager.util.valid.ValidationPassword;
 import com.epam.audiomanager.util.valid.ValidationSamePasswords;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class RegistrationCheck {

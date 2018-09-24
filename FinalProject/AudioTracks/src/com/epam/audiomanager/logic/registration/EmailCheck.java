@@ -7,14 +7,14 @@ import com.epam.audiomanager.exception.ProjectException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class EmailCheck {
+class EmailCheck {
     private static final Logger LOGGER = LogManager.getLogger(EmailCheck.class);
 
-    public static User checkEmail(String email) throws ProjectException {
+    static User checkEmail(String email) throws ProjectException {
         TransactionManager transactionManager = new TransactionManager();
         UserDAO userDAO = new UserDAO();
         transactionManager.startTransaction(userDAO);
-        User user = null;
+        User user;
         try {
             user = userDAO.findUserByEmail(email);
         } catch (ProjectException e) {

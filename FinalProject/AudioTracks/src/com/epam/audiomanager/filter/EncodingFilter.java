@@ -10,11 +10,10 @@ import java.io.IOException;
 @WebFilter(filterName = "encodingFilter", urlPatterns = {"/*"}, initParams = {@WebInitParam(name = "encoding",
         value = "UTF-8", description = "Encoding param")})
 public class EncodingFilter implements Filter {
-    private static final Logger LOGGER = LogManager.getLogger(EncodingFilter.class);
     private String code;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         code = filterConfig.getInitParameter("encoding");
     }
 

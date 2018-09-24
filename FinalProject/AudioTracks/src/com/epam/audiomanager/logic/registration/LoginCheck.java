@@ -7,10 +7,10 @@ import com.epam.audiomanager.exception.ProjectException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LoginCheck {
+class LoginCheck {
     private static final Logger LOGGER = LogManager.getLogger(EmailCheck.class);
 
-    public static User checkLogin(String login) throws ProjectException {
+    static User checkLogin(String login) throws ProjectException {
         TransactionManager transactionManager = new TransactionManager();
         UserDAO userDAO = new UserDAO();
         transactionManager.startTransaction(userDAO);

@@ -35,6 +35,7 @@ public class SignInCommand implements Command {
                         messageManager.getMessage(ConstantValues.PATH_ERROR_SIGN_IN_MESSAGE));
             }
         } catch (ProjectException e) {
+            LOGGER.error("SignInException", e);
             page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_ERROR);
         }
         Router router = new Router();

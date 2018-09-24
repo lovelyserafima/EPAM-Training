@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class InsertNewClient {
     private static final Logger LOGGER = LogManager.getLogger(InsertNewClient.class);
+
     public static void registerNewClient(User user, String encryptedPassword) throws ProjectException {
         TransactionManager transactionManager = new TransactionManager();
         UserDAO userDAO = new UserDAO();

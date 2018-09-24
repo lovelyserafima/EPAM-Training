@@ -17,10 +17,6 @@ public class Router {
     }
 
     public void setRouteType(RouteType routeType) {
-        if (routeType == null){
-            this.routeType = RouteType.FORWARD;
-        } else {
-            this.routeType = routeType;
-        }
+        this.routeType = routeType == null ? RouteType.FORWARD : routeType;
     }
 }

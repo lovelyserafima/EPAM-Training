@@ -1,21 +1,19 @@
 package com.epam.audiomanager.command.impl;
 
 import com.epam.audiomanager.command.Command;
+import com.epam.audiomanager.controller.router.RouteType;
 import com.epam.audiomanager.controller.router.Router;
-import com.epam.audiomanager.database.dao.TransactionManager;
-import com.epam.audiomanager.database.dao.impl.user.UserDAO;
 import com.epam.audiomanager.entity.user.Client;
-import com.epam.audiomanager.entity.user.User;
 import com.epam.audiomanager.exception.ProjectException;
-import com.epam.audiomanager.logic.registration.InsertNewClient;
 import com.epam.audiomanager.logic.registration.RegistrationCheck;
+import com.epam.audiomanager.logic.registration.mail.EmailConfirm;
+import com.epam.audiomanager.util.ConfirmCodeGenerator;
 import com.epam.audiomanager.util.ConstantValues;
-import com.epam.audiomanager.util.Encryption;
 import com.epam.audiomanager.util.property.ConfigurationManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.ResourceBundle;
 
 public class RegisterCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(RegisterCommand.class);
@@ -23,20 +21,26 @@ public class RegisterCommand implements Command {
     public Router execute(HttpServletRequest httpServletRequest) throws ProjectException {
         Router router = new Router();
         Client client;
+        String page;
         try {
             client = RegistrationCheck.checkNewClient(httpServletRequest);
             if (client == null){
-                router.setPagePath(ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_REGISTRATION));
+                page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_REGISTRATION);
             } else {
-                InsertNewClient.registerNewClient(client,
+                String confirmCode = ConfirmCodeGenerator.generateConfirmCode();
+                ResourceBundle resourceBundle = ResourceBundle.getBundle(ConstantValues.MAIL);
+                new EmailConfirm(client.getEmail(), ConstantValues.SUBJECT, confirmCode, resourceBundle).start();
+                page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_CONFIRM);
+                /*InsertNewClient.registerNewClient(client,
                         Encryption.encryptPassword(httpServletRequest.getParameter(ConstantValues.PASSWORD)));
-                router.setPagePath(ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_MAINCLIENT));
+                router.setPagePath(ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_MAINCLIENT));*/
             }
         } catch (ProjectException e) {
-            LOGGER.error("Error with searching user by email", e);
-            throw new ProjectException("Error with searching user by email", e);
+            LOGGER.error("Registration error", e);
+            page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_ERROR);
         }
-
+        router.setPagePath(page);
+        router.setRouteType(RouteType.FORWARD);
         return router;
     }
 }
