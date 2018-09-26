@@ -2,14 +2,14 @@ package com.epam.audiomanager.controller;
 
 import com.epam.audiomanager.command.ActionFactory;
 import com.epam.audiomanager.command.Command;
-import com.epam.audiomanager.controller.router.Router;
 import com.epam.audiomanager.database.pool.ConnectionPool;
 import com.epam.audiomanager.exception.ProjectException;
-import com.epam.audiomanager.util.ConstantValues;
+import com.epam.audiomanager.util.constant.ConstantPathPages;
 import com.epam.audiomanager.util.property.ConfigurationManager;
 import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,12 +51,12 @@ public class ControllerServlet extends HttpServlet {
                         break;
                 }
             } else {
-                String page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_LOGIN);
+                String page = ConfigurationManager.getProperty(ConstantPathPages.PATH_PAGE_LOGIN);
                 response.sendRedirect(request.getContextPath() + page);
             }
         } catch (ProjectException e) {
             LOGGER.error("ProjectError", e);
-            String page = ConfigurationManager.getProperty(ConstantValues.PATH_PAGE_ERROR);
+            String page = ConfigurationManager.getProperty(ConstantPathPages.PATH_PAGE_ERROR);
             response.sendRedirect(request.getContextPath() + page);
         }
 

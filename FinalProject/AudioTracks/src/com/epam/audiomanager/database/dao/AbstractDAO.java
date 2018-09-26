@@ -1,6 +1,7 @@
 package com.epam.audiomanager.database.dao;
 
 import com.epam.audiomanager.entity.Entity;
+import com.epam.audiomanager.exception.ProjectException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
@@ -15,13 +16,13 @@ public abstract class AbstractDAO <K, T extends Entity> {
         this.connection = connection;
     }
 
-    public void close(Statement statement){
+    public void close(Statement statement) throws ProjectException {
         try{
             if (statement != null){
                 statement.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ProjectException("CloseStatementException!", e);
         }
     }
 }

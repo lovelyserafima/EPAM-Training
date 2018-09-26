@@ -4,13 +4,21 @@ import com.epam.audiomanager.entity.Entity;
 import java.util.Objects;
 
 public class User extends Entity {
-    String login;
-    TypeUser type;
-    String firstName;
-    String secondName;
-    protected String email;
+    private String login;
+    private TypeUser type;
+    private String firstName;
+    private String secondName;
+    private String email;
 
     public User(){super();}
+
+    public User(String login, TypeUser type, String firstName, String secondName, String email){
+        this.login = login;
+        this.type = type;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+    }
 
     public User(int id, String login, TypeUser type, String firstName, String secondName, String email) {
         super(id);

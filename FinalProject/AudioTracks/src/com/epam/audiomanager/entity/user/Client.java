@@ -9,18 +9,15 @@ public class Client extends User {
         super();
     }
 
+    public Client(String email, String login, String firstName, String secondName, TypeUser typeUser, boolean bonus) {
+        super(login, typeUser, firstName, secondName, email);
+        this.bonus = bonus;
+    }
+
     public Client(int id, String login, TypeUser type, String firstName, String secondName, String email, boolean bonus)
     {
         super(id, login, type, firstName, secondName, email);
         this.bonus = bonus;
-    }
-
-    public Client(String email, String login, String firstName, String secondName, TypeUser client) {
-        this.email = email;
-        this.login = login;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.type = client;
     }
 
     public boolean isBonus() {
@@ -49,11 +46,6 @@ public class Client extends User {
     public String toString() {
         return "Client{" +
                 "bonus=" + bonus +
-                ", login='" + login + '\'' +
-                ", type=" + type +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", email='" + email + '\'' +
                 '}';
     }
 }

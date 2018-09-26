@@ -1,11 +1,10 @@
 package com.epam.audiomanager.util.property;
 
-import com.epam.audiomanager.util.ConstantValues;
-
+import com.epam.audiomanager.util.constant.ConstantBundles;
 import java.util.ResourceBundle;
 
 public class ConfigurationManager {
-    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(ConstantValues.CONFIG);
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(ConstantBundles.CONFIG);
 
     private ConfigurationManager(){}
 

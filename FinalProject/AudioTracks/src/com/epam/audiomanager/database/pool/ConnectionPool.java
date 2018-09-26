@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool{
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-    private static BlockingQueue<Connection> connectionQueue;
+    private BlockingQueue<Connection> connectionQueue;
     private final int DEFAULT_POOL_SIZE = 20;
     private static AtomicBoolean instanceCreated  = new AtomicBoolean();
     private static ConnectionPool instance;
@@ -60,7 +60,7 @@ public class ConnectionPool{
         connectionQueue.offer(connection);
     }
 
-    public void closePool() throws ProjectException {
+    public void closePool() {
         try {
             for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
                 connectionQueue.take().close();
@@ -68,10 +68,10 @@ public class ConnectionPool{
             derigesterDrivers();
         } catch (SQLException e) {
             LOGGER.error("SQLException", e);
-            throw new ProjectException("SQLException", e);
+            //throw new ProjectException("SQLException", e);
         } catch (InterruptedException e){
             LOGGER.error("InterruptedException", e);
-            throw new ProjectException("InterruptedException", e);
+            //throw new ProjectException("InterruptedException", e);
         }
     }
 

@@ -1,16 +1,15 @@
 package com.epam.audiomanager.util.property;
 
-import com.epam.audiomanager.util.ConstantValues;
-
+import com.epam.audiomanager.util.constant.ConstantBundles;
+import com.epam.audiomanager.util.constant.ConstantLocales;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public enum MessageManager {
-    EN(ResourceBundle.getBundle(ConstantValues.MESSAGE, new Locale(ConstantValues.ENGLISH_LOCALE))),
-    RU(ResourceBundle.getBundle(ConstantValues.MESSAGE, new Locale(ConstantValues.RUSSIAN_LOCALE)));
+    EN(ResourceBundle.getBundle(ConstantBundles.MESSAGE, new Locale(ConstantLocales.ENGLISH_LOCALE))),
+    RU(ResourceBundle.getBundle(ConstantBundles.MESSAGE, new Locale(ConstantLocales.RUSSIAN_LOCALE)));
 
     private ResourceBundle resourceBundle;
-
 
     MessageManager(ResourceBundle resourceBundle){
         this.resourceBundle = resourceBundle;
@@ -25,7 +24,7 @@ public enum MessageManager {
         if (locale == null){
             messageManager = messageManager.RU;
         }
-        messageManager = ("en_US".equals(locale)) ? messageManager.EN : messageManager.RU;
+        messageManager = (ConstantLocales.ENGLISH_LOCALE.equals(locale)) ? messageManager.EN : messageManager.RU;
         return messageManager;
     }
 
