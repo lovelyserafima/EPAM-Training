@@ -15,7 +15,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     private static final String FIND_USER_BY_EMAIL_AND_PASSWORD = "select * from User where email = ? and password = ?";
     private static final String FIND_USER_BY_EMAIL = "select * from User where email = ?";
     private static final String FIND_USER_BY_LOGIN = "select * from User where login = ?";
-    private static final String FIND_CLIENT_BY_ID = "select * from Client where user_id = ?";
+    private static final String FIND_CLIENT_BY_ID = "select * from Client where                                                                  user_id = ?";
 
     private static final String INSERT_USER = "insert into User(login, password, role, first_name, second_name, email) " +
             "values(?, ?, ?, ?, ?, ?)";

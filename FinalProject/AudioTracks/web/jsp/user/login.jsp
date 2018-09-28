@@ -7,9 +7,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
     <title><fmt:message key="label.title" bundle="${var}"/></title>
-    <link href="assets/css/auth/loginpage.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/auth/loginpage.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div>LYUPAudio</div>
