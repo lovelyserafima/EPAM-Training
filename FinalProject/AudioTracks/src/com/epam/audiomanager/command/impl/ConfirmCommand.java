@@ -6,7 +6,7 @@ import com.epam.audiomanager.entity.user.Client;
 import com.epam.audiomanager.exception.ProjectException;
 import com.epam.audiomanager.logic.registration.RegisterLogic;
 import com.epam.audiomanager.util.constant.ConstantAttributes;
-import com.epam.audiomanager.util.constant.ConstantErrorMessages;
+import com.epam.audiomanager.util.constant.ConstantMessages;
 import com.epam.audiomanager.util.constant.ConstantPathPages;
 import com.epam.audiomanager.util.property.ConfigurationManager;
 import com.epam.audiomanager.util.property.MessageManager;
@@ -29,9 +29,10 @@ public class ConfirmCommand implements Command {
             String encryptedPassword = String.valueOf(httpSession.getAttribute(ConstantAttributes.ENCRYPTED_PASSWORD));
             RegisterLogic.registerNewClient(client, encryptedPassword);
             page = ConfigurationManager.getProperty(ConstantPathPages.PATH_PAGE_MAIN_CLIENT);
+            httpSession.setAttribute(ConstantAttributes.LOGIN, client.getLogin());
         } else {
             httpSession.setAttribute(ConstantAttributes.ERROR_CONFIRM_CODE,
-                    messageManager.getMessage(ConstantErrorMessages.PATH_ERROR_WRONG_CONFIRM_CODE));
+                    messageManager.getMessage(ConstantMessages.PATH_ERROR_WRONG_CONFIRM_CODE));
             page = ConfigurationManager.getProperty(ConstantPathPages.PATH_PAGE_CONFIRM);
         }
         router.setPagePath(page);

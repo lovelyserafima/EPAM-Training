@@ -1,6 +1,5 @@
 package com.epam.audiomanager.controller;
 
-import com.epam.audiomanager.exception.ProjectException;
 import com.epam.audiomanager.util.constant.ConstantPathPages;
 
 public class Router {
@@ -11,11 +10,9 @@ public class Router {
         return pagePath;
     }
 
-    public void setPagePath(String pagePath) throws ProjectException {
+    public void setPagePath(String pagePath) {
         if (pagePath != null) {
             this.pagePath = pagePath;
-        } else {
-            throw new ProjectException("Wrong page path!");
         }
     }
 

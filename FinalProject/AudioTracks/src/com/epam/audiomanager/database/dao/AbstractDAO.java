@@ -7,10 +7,13 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public abstract class AbstractDAO <K, T extends Entity> {
     protected Connection connection;
     protected static final Logger LOGGER = LogManager.getLogger(AbstractDAO.class);
+
+    public abstract List<T> findAll() throws ProjectException;
 
     public void setConnection(Connection connection){
         this.connection = connection;

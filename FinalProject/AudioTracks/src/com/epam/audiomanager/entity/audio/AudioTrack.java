@@ -9,15 +9,22 @@ public class AudioTrack extends Entity {
     private String band;
     private int year;
     private BigDecimal price;
+    private String fullAudioPath;
+    private String demoAudioPath;
+    private String album;
 
     public AudioTrack(){super();}
 
-    public AudioTrack(int id, String name, String band, int year, BigDecimal price) {
+    public AudioTrack(int id, String name, String band, int year, BigDecimal price, String fullAudioPath,
+                      String demoAudioPath, String album) {
         super(id);
         this.name = name;
         this.band = band;
         this.year = year;
         this.price = price;
+        this.fullAudioPath = fullAudioPath;
+        this.demoAudioPath = demoAudioPath;
+        this.album = album;
     }
 
     public String getName() {
@@ -52,6 +59,30 @@ public class AudioTrack extends Entity {
         this.price = price;
     }
 
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public String getFullAudioPath() {
+        return fullAudioPath;
+    }
+
+    public void setFullAudioPath(String fullAudioPath) {
+        this.fullAudioPath = fullAudioPath;
+    }
+
+    public String getDemoAudioPath() {
+        return demoAudioPath;
+    }
+
+    public void setDemoAudioPath(String demoAudioPath) {
+        this.demoAudioPath = demoAudioPath;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,22 +92,28 @@ public class AudioTrack extends Entity {
         return getYear() == that.getYear() &&
                 Objects.equals(getName(), that.getName()) &&
                 Objects.equals(getBand(), that.getBand()) &&
-                Objects.equals(getPrice(), that.getPrice());
+                Objects.equals(getPrice(), that.getPrice()) &&
+                Objects.equals(getFullAudioPath(), that.getFullAudioPath()) &&
+                Objects.equals(getDemoAudioPath(), that.getDemoAudioPath()) &&
+                Objects.equals(getAlbum(), that.getAlbum());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getName(), getBand(), getYear(), getPrice());
+        return Objects.hash(super.hashCode(), getName(), getBand(), getYear(), getPrice(), getFullAudioPath(),
+                getDemoAudioPath(), getAlbum());
     }
 
     @Override
     public String toString() {
         return "AudioTrack{" +
-                "id=" + getId() +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", band='" + band + '\'' +
                 ", year=" + year +
                 ", price=" + price +
+                ", fullAudioPath='" + fullAudioPath + '\'' +
+                ", demoAudioPath='" + demoAudioPath + '\'' +
+                ", album='" + album + '\'' +
                 '}';
     }
 }

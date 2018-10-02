@@ -6,9 +6,12 @@ import com.epam.audiomanager.entity.user.Client;
 import com.epam.audiomanager.entity.user.TypeUser;
 import com.epam.audiomanager.entity.user.User;
 import com.epam.audiomanager.exception.ProjectException;
+import com.epam.audiomanager.util.constant.ConstantAttributes;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAOImpl extends AbstractDAO implements UserDAO {
     //database queries
@@ -16,11 +19,10 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     private static final String FIND_USER_BY_EMAIL = "select * from User where email = ?";
     private static final String FIND_USER_BY_LOGIN = "select * from User where login = ?";
     private static final String FIND_CLIENT_BY_ID = "select * from Client where                                                                  user_id = ?";
-
     private static final String INSERT_USER = "insert into User(login, password, role, first_name, second_name, email) " +
             "values(?, ?, ?, ?, ?, ?)";
     private static final String INSERT_CLIENT = "insert into Client(bonus) values(?)";
-    private static final String ADMIN = "ADMIN";
+    private static final String UPDATE_USER_BY_PASSWORD = "update User set password = ? where login = ?";
 
     public UserDAOImpl(){}
 
@@ -33,7 +35,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
-                if (resultSet.getString(4).toUpperCase().equals(ADMIN)){
+                if (resultSet.getString(4).toUpperCase().equals(ConstantAttributes.ADMIN)){
                     return createUser(resultSet);
                 } else {
                     PreparedStatement preparedStatementForClient = connection.prepareStatement(FIND_CLIENT_BY_ID);
@@ -97,6 +99,31 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         return false;
     }
 
+    @Override
+    public boolean updateUserPassword(String login, String newPassword) throws ProjectException {
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(FIND_USER_BY_LOGIN);
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                preparedStatement = connection.prepareStatement(UPDATE_USER_BY_PASSWORD);
+                preparedStatement.setString(1, newPassword);
+                preparedStatement.setString(2, login);
+                preparedStatement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new ProjectException("Error with updating password", e);
+        } finally {
+            if (connection != null){
+                close(preparedStatement);
+                ConnectionPool.getInstance().releaseConnection(connection);
+            }
+        }
+        return false;
+    }
+
     private User createUser(ResultSet resultSet) throws SQLException {
         return new User(resultSet.getInt(1), resultSet.getString(2),
                 TypeUser.valueOf(resultSet.getString(4).toUpperCase()),
@@ -135,5 +162,10 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
                 ConnectionPool.getInstance().releaseConnection(connection);
             }
         }
+    }
+
+    @Override
+    public List findAll() throws ProjectException {
+        return null;
     }
 }

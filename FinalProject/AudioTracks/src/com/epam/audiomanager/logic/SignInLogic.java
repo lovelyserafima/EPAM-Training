@@ -5,14 +5,13 @@ import com.epam.audiomanager.database.dao.impl.user.UserDAOImpl;
 import com.epam.audiomanager.entity.user.User;
 import com.epam.audiomanager.exception.ProjectException;
 import com.epam.audiomanager.util.Encryption;
-import com.epam.audiomanager.util.valid.ValidationEmail;
-import com.epam.audiomanager.util.valid.ValidationPassword;
+import com.epam.audiomanager.util.valid.Validation;
 
 public class SignInLogic {
     public static User checkLogin(String email, String password) throws ProjectException {
         User user = null;
 
-        if (ValidationEmail.isCorrectEmail(email) && ValidationPassword.isCorrectPassword(password)) {
+        if (Validation.isCorrectEmail(email) && Validation.isCorrectPassword(password)) {
             DAOManager daoManager = new DAOManager();
             UserDAOImpl userDAO = new UserDAOImpl();
             password = Encryption.encryptPassword(password);

@@ -15,7 +15,6 @@ public class SignUpCommand implements Command {
         Router router = new Router();
         String page = ConfigurationManager.getProperty(ConstantPathPages.PATH_PAGE_REGISTRATION);
         router.setPagePath(page);
-        router.setRouteTypeRedirect();
         HttpSession httpSession = httpServletRequest.getSession();
         httpSession.setAttribute(ConstantAttributes.ERROR_WRONG_PASSWORD, null);
         httpSession.setAttribute(ConstantAttributes.ERROR_NOT_SAME_PASSWORDS, null);
