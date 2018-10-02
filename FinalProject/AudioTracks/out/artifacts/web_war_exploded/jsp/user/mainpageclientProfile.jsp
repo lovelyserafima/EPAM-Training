@@ -85,7 +85,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <p class="text-success">${resultChangingPassword}</p>
+                <p class="text-success">${resultChanging}</p>
                 <br>
                 <form action="/controller" name="command" method="post">
                     <button type="submit" value="Edit password" name="command">

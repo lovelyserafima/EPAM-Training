@@ -35,7 +35,7 @@ public class ConfirmEditingPasswordCommand implements Command {
                     String login = ((User) httpSession.getAttribute(ConstantAttributes.USER)).getLogin();
                     ChangePasswordLogic.changePassword(login, Encryption.encryptPassword(newPassword));
                     httpSession.setAttribute(ConstantAttributes.PASSWORD, newPassword);
-                    httpSession.setAttribute(ConstantAttributes.RESULT_CHANGING_PASSWORD,
+                    httpSession.setAttribute(ConstantAttributes.RESULT_CHANGING,
                             messageManager.getMessage(ConstantMessages.PATH_RESULT_CHANGING_PASSWORD));
                     page = ConfigurationManager.getProperty(ConstantPathPages.PATH_PAGE_MAIN_CLIENT_PROFILE);
                 } else {

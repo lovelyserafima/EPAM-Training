@@ -85,7 +85,7 @@
                     </tr>
                     </tbody>
                 </table>
-                    <button type="submit" name="command" value="Confirm editing">
+                    <button type="submit" name="command" value="Confirm editing password">
                         <fmt:message key="label.changePassword"/>
                     </button>
             </div>

@@ -67,7 +67,8 @@
 
         <div class="col-sm-9">
             <div class="well">
-                <input type="text" name="searchingItem"
+                <form action="/controller" method="post">
+                <input type="text" class="form-control" name="searchingItem"
                        placeholder="<fmt:message key="label.searchByNamePerformerAlbum"/>" required>
                 <br>
                 <button type="submit" name="command" value="Search music"><fmt:message key="label.search"/></button>
@@ -85,6 +86,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <p class="text-danger">${resultOfSearching}</p>
                     <c:forEach items="${audioTracks}" var="audioTrack">
                     <tr>
                         <td>${audioTrack.id}</td>
@@ -102,6 +104,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </div>

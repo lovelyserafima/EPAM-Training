@@ -23,6 +23,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             "values(?, ?, ?, ?, ?, ?)";
     private static final String INSERT_CLIENT = "insert into Client(bonus) values(?)";
     private static final String UPDATE_USER_BY_PASSWORD = "update User set password = ? where login = ?";
+    private static final String UPDATE_USER_BY_PARAMETRES = "update User set email = ?, login = ?, first_name = ?, " +
+            "second_name = ? where login = ?";
 
     public UserDAOImpl(){}
 
@@ -115,6 +117,34 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             }
         } catch (SQLException e) {
             throw new ProjectException("Error with updating password", e);
+        } finally {
+            if (connection != null){
+                close(preparedStatement);
+                ConnectionPool.getInstance().releaseConnection(connection);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateUserParametres(User user, String oldLogin) throws ProjectException {
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(FIND_USER_BY_LOGIN);
+            preparedStatement.setString(1, oldLogin);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                preparedStatement = connection.prepareStatement(UPDATE_USER_BY_PARAMETRES);
+                preparedStatement.setString(1, user.getEmail());
+                preparedStatement.setString(2, user.getLogin());
+                preparedStatement.setString(3, user.getFirstName());
+                preparedStatement.setString(4, user.getSecondName());
+                preparedStatement.setString(5, oldLogin);
+                preparedStatement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new ProjectException("Error with updating parametres", e);
         } finally {
             if (connection != null){
                 close(preparedStatement);

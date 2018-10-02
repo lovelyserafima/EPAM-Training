@@ -8,4 +8,5 @@ public interface UserDAO {
     boolean findUserByEmail(String email) throws ProjectException;
     boolean findUserByLogin(String login) throws ProjectException;
     boolean updateUserPassword(String login, String newPassword) throws ProjectException;
+    boolean updateUserParametres(User user, String oldLogin) throws ProjectException;
 }

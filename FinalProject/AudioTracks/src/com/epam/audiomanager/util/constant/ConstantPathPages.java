@@ -11,4 +11,5 @@ public class ConstantPathPages {
     public static final String PATH_PAGE_MAIN_CLIENT_SEARCH = "path.page.mainPageClientSearch";
     public static final String PATH_PAGE_MAIN_CLIENT_PROFILE = "path.page.mainPageClientProfile";
     public static final String PATH_PAGE_MAIN_CLIENT_CHANGE_PASSWORD = "path.page.mainPageClientChangePassword";
+    public static final String PATH_PAGE_MAIN_CLIENT_CHANGE_PARAMETRES = "path.page.mainPageClientChangeParametres";
 }

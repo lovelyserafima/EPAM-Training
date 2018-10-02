@@ -23,5 +23,7 @@ public class ConstantAttributes {
     public static final String LOGIN = "login";
     public static final String FIRST_NAME = "firstName";
     public static final String SECOND_NAME = "secondName";
-    public static final String RESULT_CHANGING_PASSWORD = "resultChangingPassword";
+    public static final String RESULT_CHANGING = "resultChanging";
+    public static final String SEARCHING_ITEM = "searchingItem";
+    public static final String RESULT_OF_SEARCHING = "resultOfSearching";
 }
