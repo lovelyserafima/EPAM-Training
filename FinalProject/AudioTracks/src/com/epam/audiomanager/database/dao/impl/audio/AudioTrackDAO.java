@@ -4,6 +4,7 @@ import com.epam.audiomanager.database.dao.AbstractDAO;
 import com.epam.audiomanager.database.pool.ConnectionPool;
 import com.epam.audiomanager.entity.audio.AudioTrack;
 import com.epam.audiomanager.exception.ProjectException;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,8 @@ public class AudioTrackDAO extends AbstractDAO {
     private static final String FIND_AUDIO_TRACKS_BY_SMTH = "select AudioTrack.id, AudioTrack.name, AudioTrack.artist, " +
             "AudioTrack.year, AudioTrack.price, full_audio_path, demo_audio_path, Album.name from AudioTrack join Album " +
             "on album_id = Album.id where AudioTrack.name = ? or Album.name = ? or AudioTrack.artist = ?";
+    private static final String INSERT_AUDIOTRACK_INTO_MEDIATRACK_LIBRARY = "insert into MediaLibrary(audio_id, user_id) " +
+            "values(?, ?)";
 
     @Override
     public List findAll() throws ProjectException {
@@ -46,6 +49,11 @@ public class AudioTrackDAO extends AbstractDAO {
         return audioTracks;
     }
 
+    @Override
+    public boolean findByID(int... id) throws ProjectException {
+        return false;
+    }
+
     public List findAudioTracksBySmth(String entity) throws ProjectException {
         PreparedStatement preparedStatement = null;
         List<AudioTrack> audioTracks = new ArrayList<>();
@@ -64,7 +72,6 @@ public class AudioTrackDAO extends AbstractDAO {
                 audioTracks.add(audioTrack);
             }
         } catch (SQLException e) {
-            LOGGER.error("SQLException, searching audiotracks", e);
             throw new ProjectException("SQLException, searching audiotracks", e);
         } finally {
             if (connection != null){
@@ -73,5 +80,22 @@ public class AudioTrackDAO extends AbstractDAO {
             }
         }
         return audioTracks;
+    }
+
+    public void buyAudioTrack(int clientId, int audioId) throws ProjectException {
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(INSERT_AUDIOTRACK_INTO_MEDIATRACK_LIBRARY);
+            preparedStatement.setInt(2, clientId);
+            preparedStatement.setInt(1, audioId);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new ProjectException("SQLException, Buying audiotrack", e);
+        } finally {
+            if (connection != null){
+                close(preparedStatement);
+                ConnectionPool.getInstance().releaseConnection(connection);
+            }
+        }
     }
 }

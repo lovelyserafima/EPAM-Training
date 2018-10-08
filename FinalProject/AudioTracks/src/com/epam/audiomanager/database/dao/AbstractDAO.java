@@ -14,6 +14,7 @@ public abstract class AbstractDAO <K, T extends Entity> {
     protected static final Logger LOGGER = LogManager.getLogger(AbstractDAO.class);
 
     public abstract List<T> findAll() throws ProjectException;
+    public abstract boolean findByID(int... id) throws ProjectException;
 
     public void setConnection(Connection connection){
         this.connection = connection;

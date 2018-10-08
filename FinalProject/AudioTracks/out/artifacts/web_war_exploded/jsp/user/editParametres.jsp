@@ -76,7 +76,7 @@
                         <tr>
                             <th><fmt:message key="label.login"/></th>
                             <th><input type="text" name="login" value="${user.login}" required></th>
-                            <th><p class="text-danger">${notUniqueLogin}</p></th>
+                            <th><p class="text-danger">${wrongLogin}</p></th>
                         </tr>
                         <tr>
                             <th><fmt:message key="label.firstName"/></th>

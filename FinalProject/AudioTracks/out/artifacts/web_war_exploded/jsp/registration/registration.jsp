@@ -32,7 +32,7 @@
         <error>${errorNotSamePasswords}</error>
         <input name="login" type="text" placeholder="<fmt:message key="label.login" bundle="${var}"/>"
                required/>
-        <error>${notUniqueLogin}</error>
+        <error>${wrongLogin}</error>
         <input name="firstName" type="text" placeholder="<fmt:message key="label.firstName" bundle="${var}"/>"
                required/>
         <input name="secondName" type="text" placeholder="<fmt:message key="label.secondName" bundle="${var}"/>"

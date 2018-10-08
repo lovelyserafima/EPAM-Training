@@ -3,7 +3,6 @@ package com.epam.audiomanager.database.pool;
 import com.epam.audiomanager.exception.ProjectException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -17,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ConnectionPool{
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
     private BlockingQueue<Connection> connectionQueue;
-    private final int DEFAULT_POOL_SIZE = 20;
+    private final int DEFAULT_POOL_SIZE = 30;
     private static AtomicBoolean instanceCreated  = new AtomicBoolean();
     private static ConnectionPool instance;
     private static ReentrantLock lock = new ReentrantLock();

@@ -1,9 +1,11 @@
 package com.epam.audiomanager.entity.user;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Client extends User {
     private boolean bonus;
+    private BigDecimal money = BigDecimal.valueOf(500);
 
     public Client() {
         super();
@@ -28,24 +30,34 @@ public class Client extends User {
         this.bonus = bonus;
     }
 
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         if (!super.equals(o)) return false;
         Client client = (Client) o;
-        return isBonus() == client.isBonus();
+        return isBonus() == client.isBonus() &&
+                Objects.equals(getMoney(), client.getMoney());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), isBonus());
+        return Objects.hash(super.hashCode(), isBonus(), getMoney());
     }
 
     @Override
     public String toString() {
         return "Client{" +
                 "bonus=" + bonus +
+                ", money=" + money +
                 '}';
     }
 }

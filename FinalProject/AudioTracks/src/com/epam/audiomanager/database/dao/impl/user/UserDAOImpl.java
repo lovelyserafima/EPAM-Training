@@ -8,6 +8,7 @@ import com.epam.audiomanager.entity.user.User;
 import com.epam.audiomanager.exception.ProjectException;
 import com.epam.audiomanager.util.constant.ConstantAttributes;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,9 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     private static final String UPDATE_USER_BY_PASSWORD = "update User set password = ? where login = ?";
     private static final String UPDATE_USER_BY_PARAMETRES = "update User set email = ?, login = ?, first_name = ?, " +
             "second_name = ? where login = ?";
+    private static final String FIND_AUDIO_PRICE = "select price from AudioTrack where id = ?";
+    private static final String FIND_ALL = "select * from User";
+    private static final String UPDATE_USER_MONEY = "update Client set money = ? where user_id = ?";
 
     public UserDAOImpl(){}
 
@@ -154,6 +158,50 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         return false;
     }
 
+    @Override
+    public boolean updateUserMoney(int clientID, BigDecimal clientMoney, BigDecimal price) throws ProjectException {
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(UPDATE_USER_MONEY);
+            preparedStatement.setBigDecimal(1,
+                    BigDecimal.valueOf(clientMoney.doubleValue() - price.doubleValue()));
+            preparedStatement.setInt(2, clientID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new ProjectException("SQLException, updating money");
+        } finally {
+            if (connection != null){
+                close(preparedStatement);
+                ConnectionPool.getInstance().releaseConnection(connection);
+            }
+        }
+    }
+
+    @Override
+    public BigDecimal isEnoughMoney(BigDecimal clientMoney, int audioID) throws ProjectException {
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(FIND_AUDIO_PRICE);
+            preparedStatement.setInt(1, audioID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                BigDecimal audioPrice = resultSet.getBigDecimal(1);
+                return BigDecimal.valueOf(clientMoney.doubleValue() >= audioPrice.doubleValue() ?
+                        audioPrice.doubleValue() : -1);
+
+            }
+        } catch (SQLException e) {
+            throw new ProjectException("Error with buying track", e);
+        } finally {
+            if (connection != null){
+                close(preparedStatement);
+                ConnectionPool.getInstance().releaseConnection(connection);
+            }
+        }
+        return BigDecimal.valueOf(-1);
+    }
+
     private User createUser(ResultSet resultSet) throws SQLException {
         return new User(resultSet.getInt(1), resultSet.getString(2),
                 TypeUser.valueOf(resultSet.getString(4).toUpperCase()),
@@ -184,6 +232,12 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
                 preparedStatementForClient.setBoolean(1, ((Client) user).isBonus());
                 preparedStatementForClient.executeUpdate();
             }
+            preparedStatement = connection.prepareStatement(FIND_ALL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.last()){
+                user.setId(resultSet.getInt(1));
+            }
+
         } catch (SQLException e) {
             throw new ProjectException("Error with registration new client", e);
         } finally {
@@ -198,4 +252,10 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     public List findAll() throws ProjectException {
         return null;
     }
+
+    @Override
+    public boolean findByID(int... id) throws ProjectException {
+        return false;
+    }
+
 }

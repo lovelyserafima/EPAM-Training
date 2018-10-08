@@ -43,8 +43,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Main</a></li>
                 <li class="active"><a href="#">Search</a></li>
+                <li><a href="#">MediaLibrary</a></li>
                 <li><a href="#">Profile</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="#">Basket</a></li>
                 <li><a href="#">Log out</a></li>
             </ul>
         </div>
@@ -58,8 +59,9 @@
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="/controller?command=main"><fmt:message key="label.main"/></a></li>
                 <li class="active"><a href="/controller?command=search"><fmt:message key="label.search"/></a></li>
+                <li><a href="/controller?command=media library"><fmt:message key="label.mediaLibrary"/></a></li>
                 <li><a href="/controller?command=profile"><fmt:message key="label.profile"/></a></li>
-                <li><a href="#section3"><fmt:message key="label.settings"/></a></li>
+                <li><a href="/controller?command=basket"><fmt:message key="label.basketTitle"/></a></li>
                 <li><a href="/controller?command=log out"><fmt:message key="label.logOut"/></a></li>
             </ul><br>
         </div>
@@ -69,7 +71,7 @@
             <div class="well">
                 <form action="/controller" method="post">
                 <input type="text" class="form-control" name="searchingItem"
-                       placeholder="<fmt:message key="label.searchByNamePerformerAlbum"/>" required>
+                       placeholder="<fmt:message key="label.searchByNamePerformerAlbum"/>">
                 <br>
                 <button type="submit" name="command" value="Search music"><fmt:message key="label.search"/></button>
                 <h4><fmt:message key="label.allSongs"/></h4>
@@ -83,16 +85,18 @@
                         <th><fmt:message key="label.year"/></th>
                         <th><fmt:message key="label.price"/></th>
                         <th><fmt:message key="label.listenToDemoVersion"/></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <p class="text-danger">${resultOfSearching}</p>
-                    <c:forEach items="${audioTracks}" var="audioTrack">
+                    <p class="text-success">${resultOfAddingToBasket}</p>
+                    <c:forEach items="${requestScope.audioTracks}" var="audioTrack">
                     <tr>
                         <td>${audioTrack.id}</td>
                         <td>${audioTrack.name}</td>
-                        <td>${audioTrack.album}</td>
                         <td>${audioTrack.band}</td>
+                        <td>${audioTrack.album}</td>
                         <td>${audioTrack.year}</td>
                         <td>${audioTrack.price}</td>
                         <td>
@@ -100,6 +104,9 @@
                             <source src=${audioTrack.demoAudioPath} type="audio/mpeg">
                             </audio>
                         </td>
+                        <td><a href="/controller?command=Add to basket&trackId=${audioTrack.id}">
+                            <fmt:message key="label.addToBasket"/>
+                        </a></td>
                     </tr>
                     </c:forEach>
                     </tbody>
